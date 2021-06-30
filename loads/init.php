@@ -8,5 +8,5 @@ if (function_exists('bind_textdomain_codeset'))
 {
     bind_textdomain_codeset("sliders", 'UTF-8');
 }
-$MyMetatag->setCss("/public/skin/sliders/css/sliders.css");
+$MyMetatag->setCss("/modulos/sliders/web/css/sliders.css");
 ?>
