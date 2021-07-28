@@ -18,13 +18,11 @@ function getSlider($code)
     if (is_array($plugins)) {
         if (!in_array('flexslider',$plugins)) 
         {
-            $MyMetatag->setJs("/public/jquery/flexslider/js/jquery.flexslider.min.js");
-            $MyMetatag->setCss("/public/jquery/flexslider/css/flexslider.css");
+            $MyFrankyMonster->addJquery('flexslider');
         }     
     }
     else{
-        $MyMetatag->setJs("/public/jquery/flexslider/js/jquery.flexslider.min.js");
-        $MyMetatag->setCss("/public/jquery/flexslider/css/flexslider.css");
+        $MyFrankyMonster->addJquery('flexslider');
     }
       
 
