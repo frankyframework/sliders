@@ -1,0 +1,62 @@
+{
+    "data":[
+        {
+            "php":"admin/sliders/lista.php",
+            "css":"",
+            "js":[],
+            "jquery":[],
+            "permisos":[1,2],
+            "constante":"ADMIN_SLIDERS",
+            "url":"admin/sliders/",
+            "nombre":"Sliders",
+            "ajax":["base/ajax.admin.js"],
+            "status":1,
+            "editable":1,
+            "modulo":"sliders"
+        },
+        {
+            "php":"admin/sliders/form.php",
+            "css":"",
+            "js":[],
+            "jquery":["jquery-validate","tags"],
+            "permisos":[1,2],
+            "constante":"FRM_SLIDERS",
+            "url":"admin/sliders/frm/",
+            "nombre":"Alta de sliders",
+            "ajax":["base/ajax.admin.js","sliders/ajax.admin.js"],
+            "status":1,
+            "editable":1,
+            "modulo":"sliders"
+        },
+        {
+            "php":"admin/sliders/items/lista.php",
+            "css":"",
+            "js":"",
+            "jquery":[],
+            "permisos":[1,2],
+            "constante":"ADMIN_SLIDERS_ITEMS",
+            "url":"admin/sliders/items/",
+            "nombre":"Items de sliders",
+            "ajax":["base/ajax.admin.js","sliders/ajax.admin.js"],
+            "status":1,
+            "editable":1,
+            "modulo":"sliders"
+        },
+        {
+            "php":"admin/sliders/items/form.php",
+            "css":"",
+            "js":"",
+            "jquery":["jquery-validate","tags"],
+            "permisos":[1,2],
+            "constante":"FRM_SLIDERS_ITEMS",
+            "url":"admin/sliders/items/frm/",
+            "nombre":"Alta de items de sliders",
+            "ajax":["base/ajax.admin.js","sliders/ajax.admin.js"],
+            "status":1,
+            "editable":1,
+            "modulo":"sliders"
+        }
+
+
+    ]
+}

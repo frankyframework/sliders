@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `sliders_sliders`;
+-DROP TABLE IF EXISTS `sliders_sliders`;
 
 CREATE TABLE `sliders_sliders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,9 +38,3 @@ CREATE TABLE `sliders_sliders_items` (
   KEY `id_slider` (`id_slider`),
   CONSTRAINT `sliders_sliders_items_ibfk_1` FOREIGN KEY (`id_slider`) REFERENCES `sliders_sliders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-
-insert into `franky` ( `php`, `css`, `js`, `jquery`, `permisos`, `constante`, `url`, `nombre`, `ajax`, `status`, `editable`, `modulo`) values('admin/sliders/lista.php','','','[]','[1,2]','ADMIN_SLIDERS','admin/sliders/','Sliders','[\"base/ajax.admin.js\"]','1','0','sliders');
-insert into `franky` ( `php`, `css`, `js`, `jquery`, `permisos`, `constante`, `url`, `nombre`, `ajax`, `status`, `editable`, `modulo`) values('admin/sliders/form.php','','[\"validaciones.js\"]','[\"jquery-validate\",\"tags\"]','[1,2]','FRM_SLIDERS','admin/sliders/frm/','Alta de sliders','[\"base/ajax.admin.js\",\"sliders/ajax.admin.js\"]','1','0','sliders');
-insert into `franky` ( `php`, `css`, `js`, `jquery`, `permisos`, `constante`, `url`, `nombre`, `ajax`, `status`, `editable`, `modulo`) values('admin/sliders/items/lista.php','','','[]','[1,2]','ADMIN_SLIDERS_ITEMS','admin/sliders/items/','Items de sliders','[\"base/ajax.admin.js\",\"sliders/ajax.admin.js\"]','1','0','sliders');
-insert into `franky` ( `php`, `css`, `js`, `jquery`, `permisos`, `constante`, `url`, `nombre`, `ajax`, `status`, `editable`, `modulo`) values('admin/sliders/items/form.php','','[\"validaciones.js\"]','[\"jquery-validate\",\"tags\"]','[1,2]','FRM_SLIDERS_ITEMS','admin/sliders/items/frm/','Alta de items de sliders','[\"base/ajax.admin.js\",\"sliders/ajax.admin.js\"]','1','0','sliders');
