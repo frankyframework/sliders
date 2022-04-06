@@ -30,7 +30,7 @@ class SlidersForm extends \Franky\Form\Form
 
         $this->add(array(
                 'name' => 'name',
-                'label' => 'Nombre:',
+                'label' => _sliders('Nombre'),
                 'type'  => 'text',
                 'required'  => true,
                 'atributos' => array(
@@ -45,7 +45,7 @@ class SlidersForm extends \Franky\Form\Form
 
         $this->add(array(
                 'name' => 'code',
-                'label' => 'Codigo único:',
+                'label' => _sliders('Codigo único'),
                 'type'  => 'text',
                 'required'  => true,
                 'atributos' => array(
@@ -61,21 +61,21 @@ class SlidersForm extends \Franky\Form\Form
         $this->add(array(
             'name' => 'controlnav',
             'type'  => 'checkbox',
-            'options' =>  array("1" => "Controles de navegación"),
+            'options' =>  array("1" => _sliders("Controles de navegación")),
             )
         );
 
         $this->add(array(
             'name' => 'auto',
             'type'  => 'checkbox',
-            'options' =>  array("1" => "Inicio automatico"),
+            'options' =>  array("1" => _sliders("Inicio automatico")),
             )
         );
 
         $this->add(array(
             'name' => 'infinito',
             'type'  => 'checkbox',
-            'options' =>  array("1" => "Loop infinito"),
+            'options' =>  array("1" => _sliders("Loop infinito")),
             )
         );
 
@@ -85,7 +85,7 @@ class SlidersForm extends \Franky\Form\Form
                 'type'  => 'submit',
                 'atributos' => array(
                     'class'       => 'btn btn-primary btn-big float_right',
-                    'value' => "Guardar"
+                    'value' => _sliders("Guardar")
                  )
 
             )

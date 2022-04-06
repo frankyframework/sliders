@@ -49,12 +49,12 @@ if($SlidersModel->getTotal() > 0)
 
 
 //$MyFrankyMonster->setPHPFile(getVista("admin/template/grid.phtml"));
-$title_grid = "Sliders";
+$title_grid = _sliders("Sliders");
 $class_grid = "cont_sliders";
-$error_grid = "No hay sliders registrados";
+$error_grid = _sliders("No hay sliders registrados");
 $deleteFunction = "DeleteSliders";
 $frm_constante_link = FRM_SLIDERS;
-$titulo_columnas_grid = array("createdAt" => "Fecha","name" => "Nombre","code" => "Code");
+$titulo_columnas_grid = array("createdAt" => _sliders("Fecha"),"name" => _sliders("Nombre"),"code" => _sliders("Code"));
 $value_columnas_grid = array("createdAt", "name","code" );
 
 $css_columnas_grid = array("createdAt" => "w-xxxx-3" ,"name" => "w-xxxx-3" ,"code" => "w-xxxx-3" );

@@ -36,7 +36,7 @@ class SlidersItemsForm extends \Franky\Form\Form
 
         $this->add(array(
                 'name' => 'titulo',
-                'label' => 'Titulo',
+                'label' => _sliders('Titulo'),
                 'type'  => 'text',
                 'required'  => false,
                 'atributos' => array(
@@ -51,7 +51,7 @@ class SlidersItemsForm extends \Franky\Form\Form
 
         $this->add(array(
             'name' => 'descripcion',
-            'label' => 'Descripcion',
+            'label' => _sliders('Descripcion'),
             'type'  => 'textarea',
             'required'  => false,
             'atributos' => array(
@@ -66,7 +66,7 @@ class SlidersItemsForm extends \Franky\Form\Form
       
         $this->add(array(
             'name' => 'url',
-            'label' => 'Url',
+            'label' => _sliders('Url'),
             'type'  => 'text',
             'required'  => false,
             'atributos' => array(
@@ -81,7 +81,7 @@ class SlidersItemsForm extends \Franky\Form\Form
         
         $this->add(array(
             'name' => 'tipo',
-            'label' => 'Tipo:',
+            'label' => _sliders('Tipo'),
             'type'  => 'select',
             'required'  => true,
             'atributos' => array(
@@ -89,7 +89,7 @@ class SlidersItemsForm extends \Franky\Form\Form
              ),
             'options' => array(
                 'video' => 'Video local',
-                'video-embebed' => 'Código embebido',
+                'video-embebed' => _sliders('Código embebido'),
                 'imagen' => 'imagen'
             ),
             'label_atributos' => array(
@@ -100,7 +100,7 @@ class SlidersItemsForm extends \Franky\Form\Form
 
         $this->add(array(
             'name' => 'file',
-            'label' => _('Archivo Slider'),
+            'label' => _sliders('Archivo Slider'),
             'type'  => 'file',
             'atributos' => array(
                 'id' => "file"
@@ -110,7 +110,7 @@ class SlidersItemsForm extends \Franky\Form\Form
 
         $this->add(array(
             'name' => 'file_responsive',
-            'label' => _('Archivo Slider mobile'),
+            'label' => _sliders('Archivo Slider mobile'),
             'type'  => 'file',
             'atributos' => array(
                 'id' => "file_responsive"
@@ -120,7 +120,7 @@ class SlidersItemsForm extends \Franky\Form\Form
 
         $this->add(array(
             'name' => 'code',
-            'label' => 'Codigo embebido',
+            'label' =>_sliders( 'Codigo embebido'),
             'type'  => 'textarea',
             'required'  => false,
             'atributos' => array(
@@ -138,14 +138,14 @@ class SlidersItemsForm extends \Franky\Form\Form
             'atributos' => array(
                 'class' => ''
             ),
-            'options' =>  array("1" => "Mostrar boton ver mas"),
+            'options' =>  array("1" => _sliders("Mostrar boton ver mas")),
 
 
             )
         );
         $this->add(array(
                 'name' => 'fecha_inicio',
-                'label' => 'Fecha de inicio',
+                'label' => _sliders('Fecha de inicio'),
                 'type'  => 'date',
                 'required'  => false,
                 'atributos' => array(
@@ -161,7 +161,7 @@ class SlidersItemsForm extends \Franky\Form\Form
     
         $this->add(array(
                 'name' => 'fecha_fin',
-                'label' => 'Fecha de fin',
+                'label' => _sliders('Fecha de fin'),
                 'type'  => 'date',
                 'required'  => false,
                 'atributos' => array(
@@ -181,7 +181,7 @@ class SlidersItemsForm extends \Franky\Form\Form
                 'type'  => 'submit',
                 'atributos' => array(
                     'class'       => 'btn btn-primary btn-big float_right',
-                    'value' => "Guardar"
+                    'value' => _sliders("Guardar")
                  )
 
             )

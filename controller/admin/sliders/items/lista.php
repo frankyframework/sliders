@@ -72,12 +72,12 @@ if($SlidersitemsModel->getTotal() > 0)
 
 //$MyFrankyMonster->setPHPFile(getVista("admin/template/grid.phtml"));
 $ordenfunction = "setOrdenSlidersItems";
-$title_grid = "Sliders";
+$title_grid = _sliders("Sliders");
 $class_grid = "cont_sliders";
-$error_grid = "No items para este sliders";
+$error_grid = _sliders("No items para este sliders");
 $deleteFunction = "DeleteSlidersItems";
 $frm_constante_link = FRM_SLIDERS_ITEMS;
-$titulo_columnas_grid = array("createdAt" => "Fecha","tipo" => "Tipo");
+$titulo_columnas_grid = array("createdAt" => _sliders("Fecha"),"tipo" => _sliders("Tipo"));
 $value_columnas_grid = array("createdAt", "tipo" );
 
 $css_columnas_grid = array("createdAt" => "w-xxxx-3" ,"tipo" => "w-xxxx-3" );
