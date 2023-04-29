@@ -84,8 +84,11 @@ $(window).load(function(){
 
         event.preventDefault();
         var nuevo_estado = ($(this).attr("href").replace("#","") == "activar" ? 1 : 0);
-
-        EliminarRegistro('<?php echo $deleteFunction; ?>',$(this).attr("id"),nuevo_estado)
+        <?php if(getCoreConfig('sliders/slideritem/showdelete') == 0): ?>      
+                EliminarRegistro('<?php echo $deleteFunction; ?>',$(this).attr("id"),nuevo_estado,'','EliminarRegistorPanelRemove')
+        <?php else: ?>
+                EliminarRegistro('<?php echo $deleteFunction; ?>',$(this).attr("id"),nuevo_estado)
+         <?php endif; ?>
 
     });
 

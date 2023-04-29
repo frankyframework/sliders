@@ -22,6 +22,9 @@ $SlidersitemsModel->setPage($MyPaginacion->getPage());
 $SlidersitemsModel->setTampag($MyPaginacion->getTampageDefault());
 $SlidersitemsModel->setOrdensql($MyPaginacion->getCampoOrden()." ".$MyPaginacion->getOrden());
 
+if(getCoreConfig('sliders/slideritem/showdelete') == 0){
+    $SlidersitemsEntity->status(1);
+}
 
 $result	 = $SlidersitemsModel->getData($SlidersitemsEntity->getArrayCopy());
 $MyPaginacion->setTotal($SlidersitemsModel->getTotal());

@@ -1,6 +1,7 @@
 <?php
 use Base\Form\filtrosForm;
 use Sliders\model\SlidersModel;
+use Sliders\entity\SlidersEntity;
 use Franky\Core\paginacion;
 use Franky\Haxor\Tokenizer;
 
@@ -16,13 +17,16 @@ $busca_b	= $MyRequest->getRequest('busca_b');
 
 
 $SlidersModel = new SlidersModel();
+$SlidersEntity = new SlidersEntity();
 
 $SlidersModel->setPage($MyPaginacion->getPage());
 $SlidersModel->setTampag($MyPaginacion->getTampageDefault());
 $SlidersModel->setOrdensql($MyPaginacion->getCampoOrden()." ".$MyPaginacion->getOrden());
 
-
-$result	 = $SlidersModel->getData([]);
+if(getCoreConfig('sliders/slider/showdelete') == 0){
+        $SlidersEntity->status(1);
+}
+$result	 = $SlidersModel->getData($SlidersEntity->getArrayCopy());
 $MyPaginacion->setTotal($SlidersModel->getTotal());
 
 $lista_admin_data = array();
