@@ -31,7 +31,7 @@ if(!$valid)
 }
 
 
-if(!$MyAccessList->MeDasChancePasar(ADMINISTRAR_SLIDERS))
+if(!$MyAccessList->MeDasChancePasar("administrar_sliders"))
 {
     $MyFlashMessage->setMsg("error",$MyMessageAlert->Message("sin_privilegios"));
     $error = true;

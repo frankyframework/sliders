@@ -85,7 +85,7 @@ $value_columnas_grid = array("createdAt", "tipo" );
 
 $css_columnas_grid = array("createdAt" => "w-xxxx-3" ,"tipo" => "w-xxxx-3" );
 
-$permisos_grid = ADMINISTRAR_SLIDERS;
+$permisos_grid = "administrar_sliders";
 $MyFiltrosForm = new filtrosForm('paginar');
 $MyFiltrosForm->setMobile($Mobile_detect->isMobile());
 ?>

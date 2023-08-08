@@ -5,7 +5,7 @@ return array(
    
    
     array(
-     "permiso" =>   ADMINISTRAR_SLIDERS,
+     "permiso" =>   "administrar_sliders",
      "url" => $MyRequest->url(ADMIN_SLIDERS),
      "etiqueta" => _("Sliders")
     )

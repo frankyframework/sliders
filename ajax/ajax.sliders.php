@@ -11,7 +11,7 @@ function DeleteSliders($id,$status)
 
     $respuesta = null;
 
-    if($MyAccessList->MeDasChancePasar(ADMINISTRAR_SLIDERS))
+    if($MyAccessList->MeDasChancePasar("administrar_sliders"))
     {
         $SlidersEntity->id(addslashes($Tokenizer->decode($id)));
         $SlidersEntity->status($status);
@@ -46,7 +46,7 @@ function DeleteSlidersItems($id,$status)
 
     $respuesta = null;
 
-    if($MyAccessList->MeDasChancePasar(ADMINISTRAR_SLIDERS))
+    if($MyAccessList->MeDasChancePasar("administrar_sliders"))
     {
         $SlidersitemsEntity->id(addslashes($Tokenizer->decode($id)));
         $SlidersitemsEntity->status($status);
@@ -79,7 +79,7 @@ function setOrdenSlidersItems($orden)
     global $MyAccessList;
     global $MyMessageAlert;
     $respuesta =null;
-    if($MyAccessList->MeDasChancePasar(ADMINISTRAR_SLIDERS))
+    if($MyAccessList->MeDasChancePasar("administrar_sliders"))
     {
         $orden = explode(",",str_replace("cat_","",$orden));
 

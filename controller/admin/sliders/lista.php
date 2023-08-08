@@ -63,7 +63,7 @@ $value_columnas_grid = array("createdAt", "name","code" );
 
 $css_columnas_grid = array("createdAt" => "w-xxxx-3" ,"name" => "w-xxxx-3" ,"code" => "w-xxxx-3" );
 
-$permisos_grid = ADMINISTRAR_SLIDERS;
+$permisos_grid = "administrar_sliders";
 $MyFiltrosForm = new filtrosForm('paginar');
 $MyFiltrosForm->setMobile($Mobile_detect->isMobile());
 ?>
