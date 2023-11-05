@@ -94,15 +94,13 @@
             },
             {
                 "name":"fecha_inicio",
-                "type":"datetime",
-                "null":1,
-                "default":""
+                "type":"date",
+                "null":1
             },
             {
                 "name":"fecha_fin",
-                "type":"datetime",
-                "null":1,
-                "default":""
+                "type":"date",
+                "null":1
             }
 
         ],
