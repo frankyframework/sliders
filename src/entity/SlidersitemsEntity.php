@@ -46,8 +46,8 @@ class SlidersitemsEntity
         $this->createdAt = (isset($data["createdAt"]) ? $data["createdAt"] : null);
         $this->updateAt = (isset($data["updateAt"]) ? $data["updateAt"] : null);
         $this->boton_link = (isset($data["boton_link"]) ? $data["boton_link"] : null);
-        $this->fecha_inicio = (isset($data["fecha_inicio"]) ? $data["fecha_inicio"] : null);
-        $this->fecha_fin = (isset($data["fecha_fin"]) ? $data["fecha_fin"] : null);
+        $this->fecha_inicio = (isset($data["fecha_inicio"]) && !empty($data["fecha_inicio"]) ? $data["fecha_inicio"] : null);
+        $this->fecha_fin = (isset($data["fecha_fin"])  && !empty($data["fecha_fin"]) ? $data["fecha_fin"] : null);
 
     }
 
@@ -64,7 +64,7 @@ class SlidersitemsEntity
             );
     }
 
-    
+
 
     public function id($id = null){ if($id !== null){ $this->id=$id; }else{ return $this->id; } }
 

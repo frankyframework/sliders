@@ -95,12 +95,14 @@
             {
                 "name":"fecha_inicio",
                 "type":"date",
-                "null":1
+                "null":1,
+                "default":"0000-00-00"
             },
             {
                 "name":"fecha_fin",
                 "type":"date",
-                "null":1
+                "null":1,
+                "default":"0000-00-00"
             }
 
         ],

@@ -27,10 +27,10 @@ class SlidersEntity
     {
         $this->id = (isset($data["id"]) ? $data["id"] : null);
         $this->code = (isset($data["code"]) ? $data["code"] : null);
-        $this->controlnav = (isset($data["controlnav"]) ? $data["controlnav"] : null);
-        $this->infinito = (isset($data["infinito"]) ? $data["infinito"] : null);
+        $this->controlnav = (isset($data["controlnav"]) ? $data["controlnav"] : 0);
+        $this->infinito = (isset($data["infinito"]) ? $data["infinito"] : 0);
         $this->name = (isset($data["name"]) ? $data["name"] : null);
-        $this->auto = (isset($data["auto"]) ? $data["auto"] : null);
+        $this->auto = (isset($data["auto"]) ? $data["auto"] : 0);
         $this->status = (isset($data["status"]) ? $data["status"] : null);
         $this->createdAt = (isset($data["createdAt"]) ? $data["createdAt"] : null);
         $this->updateAt = (isset($data["updateAt"]) ? $data["updateAt"] : null);
@@ -44,13 +44,13 @@ class SlidersEntity
 
     public function setValidation()
     {
-        return array( 
+        return array(
             "code" => array("valor" => $this->code,"required"),
             "name" => array("valor" => $this->name,"required"),
             );
     }
 
-    
+
 
     public function id($id = null){ if($id !== null){ $this->id=$id; }else{ return $this->id; } }
 
