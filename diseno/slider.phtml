@@ -32,26 +32,63 @@
                     {
                         $item['imagen'] = $MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".$item["file"];
 
+                        if(getCoreConfig("base/pwa/images-next-generation") == 1)
+                        {
+                            $img = $MyRequest->link($item['imagen'],false,false);
+                            $schemaImg = pathinfo($img);
+                            $imageResize = new \Franky\Core\ImageResize(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['basename']);
+                            
+                            $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
+                    
+                            if(file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
+                                $item['imagen_wp'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                            endif;
+                        }
                     }
                     if(!empty($item["file_responsive"]) && file_exists($MyConfigure->getServerUploadDir()."/sliders/".$item['id_slider']."/".$item["file_responsive"]))
                     {
                         $item['imagen_responsive'] = $MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".$item["file_responsive"];
+                     
+                        if(getCoreConfig("base/pwa/images-next-generation") == 1)
+                        {
+                            $img = $MyRequest->link($item['imagen_responsive'],false,false);
+                            $schemaImg = pathinfo($img);
+                            $imageResize = new \Franky\Core\ImageResize(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['basename']);
+                            
+                            $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
+                    
+                            if(file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
+                                $item['imagen_responsive_wp'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                            endif;
+                        }
                     }
                 ?>
                 <?php if(!empty($item['url'])): ?>
                     <a href="<?=$item['url']?>" target="blank" class="">
                 <?php endif; ?>
-                <?=makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."'"); ?>
+                <?php
+                if(getCoreConfig("base/pwa/images-next-generation") == 1 && isset($item['imagen_wp']) && isset($item['imagen_responsive_wp'] )) {
+                    echo makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."' data-mobile-wp='".$item['imagen_responsive_wp']."' data-desktop-wp='".$item['imagen_wp']."'"); 
+                } else {
+                    echo makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."'"); 
+                }
+                
+                
+                ?>
                 <?php if(!empty($item['url'])): ?>
                     </a>
                 <?php endif; ?>    
                     <script>
-                    $(window).load(function(){
+                    $(window).on('load resize', function(){
                         if($(this).width() < 768)
                         {
                             if($('.item_<?=$item['id']?>').find('img').attr('data-mobile').length > 0)
                             {
                                 $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-mobile'));
+                            }
+                            if($('.item_<?=$item['id']?>').find('img').attr('data-mobile-wp').length > 0)
+                            {
+                                $('.item_<?=$item['id']?>').find('source').attr('srcset',$('.item_<?=$item['id']?>').find('img').attr('data-mobile-wp'));
                             }
                         }
                         else{
@@ -59,20 +96,9 @@
                             {
                                 $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-desktop'))
                             }
-                        }
-                    });
-                    $(window).resize(function(){
-                        if($(this).width() < 768)
-                        {
-                            if($('.item_<?=$item['id']?>').find('img').attr('data-mobile').length > 0)
+                            if($('.item_<?=$item['id']?>').find('img').attr('data-desktop-wp').length > 0)
                             {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-mobile'));
-                            }
-                        }
-                        else{
-                            if($('.item_<?=$item['id']?>').find('img').attr('data-desktop').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-desktop'))
+                                $('.item_<?=$item['id']?>').find('source').attr('srcset',$('.item_<?=$item['id']?>').find('img').attr('data-desktop-wp'));
                             }
                         }
                     });

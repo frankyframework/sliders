@@ -11,6 +11,7 @@ function getSlider($code)
     global $MyConfigure;
     global $MyFrankyMonster;
     global $MyMetatag;
+    global $MyRequest;
 
     $plugins = $MyFrankyMonster->MyJQueyfile();
     
@@ -54,7 +55,7 @@ function getSlider($code)
                 $slider['items'][] = $registro;
             }  
             
-            return render(PROJECT_DIR.'/modulos/sliders/diseno/slider.phtml',['slider' => $slider,'MyConfigure' => $MyConfigure]);
+            return render(PROJECT_DIR.'/modulos/sliders/diseno/slider.phtml',['slider' => $slider,'MyRequest' => $MyRequest,'MyConfigure' => $MyConfigure]);
         }
       
         
