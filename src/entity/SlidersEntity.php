@@ -25,7 +25,7 @@ class SlidersEntity
 
     public function exchangeArray($data)
     {
-        $this->id = (isset($data["id"]) ? $data["id"] : null);
+        $this->id = (isset($data["id"]) && !empty($data["id"]) ? $data["id"] : null);
         $this->code = (isset($data["code"]) ? $data["code"] : null);
         $this->controlnav = (isset($data["controlnav"]) ? $data["controlnav"] : 0);
         $this->infinito = (isset($data["infinito"]) ? $data["infinito"] : 0);

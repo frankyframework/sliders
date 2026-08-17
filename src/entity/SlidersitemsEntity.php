@@ -32,7 +32,7 @@ class SlidersitemsEntity
 
     public function exchangeArray($data)
     {
-        $this->id = (isset($data["id"]) ? $data["id"] : null);
+        $this->id = (isset($data["id"]) && !empty($data["id"]) ? $data["id"] : null);
         $this->id_slider = (isset($data["id_slider"]) ? $data["id_slider"] : null);
         $this->tipo = (isset($data["tipo"]) ? $data["tipo"] : null);
         $this->file = (isset($data["file"]) ? $data["file"] : null);
