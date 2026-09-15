@@ -4,7 +4,7 @@
         <h1 class="titulo_seccion_admin"><?= _('Items Slider') ?></h1>
         <div class="w-xxxx-12 cont_header_panel">
             <div class="_wrapp_form_serch">
-                
+            <div class="form-group"><a class="_btn _secondary" href="<?= ($MyRequest->getRequest('callback') ? $Tokenizer->decode($MyRequest->getRequest('callback')) : $MyRequest->url(ADMIN_SLIDERS))?>" ><?= _('Atras') ?></a></div>
                 <a href="<?php echo $MyRequest->url(FRM_SLIDERS_ITEMS); ?>?id_slider=<?=$MyRequest->getRequest('id_slider')?>" class="_btn_new">Nuevo</a>
           </div>
         </div>
