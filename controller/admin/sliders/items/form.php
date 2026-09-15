@@ -46,9 +46,9 @@ if(!empty($id))
 
         }
     }
-    $data['id'] = $Tokenizer->token('category', $data['id']);
+    $data['id'] = $Tokenizer->token('item_sliders', $data['id']);
     
-    $id_slider = $Tokenizer->token('category', $data['id_slider']);
+    $id_slider = $Tokenizer->token('item_sliders', $data['id_slider']);
 }
 
 $adminForm = new SlidersItemsForm("frmslidersitems");

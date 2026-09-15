@@ -1,42 +1,51 @@
 <?php
-use Base\Form\filtrosForm;
 use Sliders\model\SlidersitemsModel;
 use Sliders\entity\SlidersitemsEntity;
-use Franky\Core\paginacion;
 use Franky\Haxor\Tokenizer;
-
-$MyPaginacion = new paginacion();
 $Tokenizer = new Tokenizer();
-$id_slider = $MyRequest->getRequest('id');
-$MyPaginacion->setPage($MyRequest->getRequest('page',1));
-$MyPaginacion->setCampoOrden($MyRequest->getRequest('por',"orden"));
-$MyPaginacion->setOrden($MyRequest->getRequest('order',"ASC"));
-$MyPaginacion->setTampageDefault($MyRequest->getRequest('tampag',500));		
-$busca_b	= $MyRequest->getRequest('busca_b');	
+
+if ($MyRequest->isAjax()) {
+    $callback	= $MyRequest->getRequest('callback');
+    $filters = $MyRequest->getRequest('filters');
+    $id_slider = $Tokenizer->decode($MyRequest->getRequest('id_slider'));
+    if(empty($id_slider)) {
+        $dataRows = ["rows" => [], "total" =>0, "page" => 1,"records" => 0];
+        header('Content-Type: application/json; charset=utf-8');
+        echo $callback . '(' . json_encode($dataRows). ');';
+        die;
+    }
+    $dataPost = json_decode(stripslashes($filters),true);
+    $dataPost = $dataPost['rules'];
+    $requestFranky = [];
+    $request = [];
+    foreach($dataPost as $data) {
+            $request[$data['field']] = $MyRequest->Sanitizacion($data['data']);
+    }        
+    $sortInput  = (!empty($MyRequest->getRequest('sidx',"orden")) ? : "orden");
+    
+    $SlidersitemsModel = new SlidersitemsModel();
+    $SlidersitemsEntity = new SlidersitemsEntity();
+    $SlidersitemsEntity->id_slider($Tokenizer->decode($id_slider));
+    $SlidersitemsModel->setPage($MyRequest->getRequest('page',1));
+    $SlidersitemsModel->setTampag($MyRequest->getRequest('rows',100));
+    $SlidersitemsModel->setOrdensql($sortInput." ".$MyRequest->getRequest('sord',"ASC"));
+
+    if(getCoreConfig('sliders/slideritem/showdelete') == 0){
+        $SlidersitemsEntity->status(1);
+    }
+
+    $result	 = $SlidersitemsModel->getData($SlidersitemsEntity->getArrayCopy());
+    $dataRows = ["rows" => [], "total" => ceil($SlidersitemsModel->getTotal() / $MyRequest->getRequest('rows',100)), "page" => (int)$MyRequest->getRequest('page',1),"records" => $SlidersitemsModel->getTotal()];
+
+    if($SlidersitemsModel->getTotal() > 0)
+    {
 
 
-$SlidersitemsModel = new SlidersitemsModel();
-$SlidersitemsEntity = new SlidersitemsEntity();
-$SlidersitemsEntity->id_slider($Tokenizer->decode($id_slider));
-$SlidersitemsModel->setPage($MyPaginacion->getPage());
-$SlidersitemsModel->setTampag($MyPaginacion->getTampageDefault());
-$SlidersitemsModel->setOrdensql($MyPaginacion->getCampoOrden()." ".$MyPaginacion->getOrden());
-
-if(getCoreConfig('sliders/slideritem/showdelete') == 0){
-    $SlidersitemsEntity->status(1);
-}
-
-$result	 = $SlidersitemsModel->getData($SlidersitemsEntity->getArrayCopy());
-$MyPaginacion->setTotal($SlidersitemsModel->getTotal());
-
-$lista_admin_data = array();
-if($SlidersitemsModel->getTotal() > 0)
-{
-	$iRow = 0;	
-
-	while($registro = $SlidersitemsModel->getRows())
-	{
-		$thisClass  = ((($iRow % 2) == 0) ? "formFieldDk" : "formFieldLt");
+        while($registro = $SlidersitemsModel->getRows())
+        {
+            $registro = array_filter($registro, function($llave) {
+                return !is_numeric($llave);
+            }, ARRAY_FILTER_USE_KEY);    
                 
                 if($registro['tipo'] == 'imagen')
                 {
@@ -60,32 +69,20 @@ if($SlidersitemsModel->getTotal() > 0)
                 {
                     $registro['preview'] = "<div style='width:50px;height:50px;'>".$registro['code']."</div>";
                 }
-		$lista_admin_data[] = array_merge($registro,array(
-                "id" => $Tokenizer->token("sliders", $registro["id"]),
-                "callback" => $Tokenizer->token("sliders", $MyRequest->getURI()),    
+                $dataRows['rows'][] = array_merge($registro,array(
+                "id" => $Tokenizer->token("item_sliders", $registro["id"]),
+                "id_slider" => $Tokenizer->token("item_sliders", $registro["id_slider"]),
                 "createdAt" 	=> getFechaUI($registro["createdAt"]),
-                "thisClass"     => $thisClass,
-                "nuevo_estado"  => ($registro["status"] == 1 ?"desactivar" : "activar"),
+                "status"  => ($registro["status"] == 1 ?"desactivar" : "activar"),
                 ));
-                $iRow++;
         }
+    }
+
+    header('Content-Type: application/json; charset=utf-8');
+    echo $callback . '(' . json_encode($dataRows). ');';
+    die;
+} else {
+    $MyMetatag->setJs("/public/plugins/jqGrid/js/jquery.jqGrid.js");
+    $MyMetatag->setJs("/public/plugins/jqGrid/js/i18n/grid.locale-$lang_root.js");
+    $MyMetatag->setCSS("/public/plugins/jqGrid/css/ui.jqgrid.css");
 }
-
-
-
-//$MyFrankyMonster->setPHPFile(getVista("admin/template/grid.phtml"));
-$ordenfunction = "setOrdenSlidersItems";
-$title_grid = _sliders("Sliders");
-$class_grid = "cont_sliders";
-$error_grid = _sliders("No items para este sliders");
-$deleteFunction = "DeleteSlidersItems";
-$frm_constante_link = FRM_SLIDERS_ITEMS;
-$titulo_columnas_grid = array("createdAt" => _sliders("Fecha"),"tipo" => _sliders("Tipo"));
-$value_columnas_grid = array("createdAt", "tipo" );
-
-$css_columnas_grid = array("createdAt" => "w-xxxx-3" ,"tipo" => "w-xxxx-3" );
-
-$permisos_grid = "administrar_sliders";
-$MyFiltrosForm = new filtrosForm('paginar');
-$MyFiltrosForm->setMobile($Mobile_detect->isMobile());
-?>

@@ -22,6 +22,7 @@
                     continue;
                 }
             } 
+            
             ?>
                 <li class="item_<?=$item['id']?>" >
                 <?php if($item['tipo'] == 'imagen'): ?>
@@ -86,7 +87,7 @@
                             {
                                 $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-mobile'));
                             }
-                            if($('.item_<?=$item['id']?>').find('img').attr('data-mobile-wp').length > 0)
+                            if($('.item_<?=$item['id']?>').find('img[data-mobile-wp]').length > 0)
                             {
                                 $('.item_<?=$item['id']?>').find('source').attr('srcset',$('.item_<?=$item['id']?>').find('img').attr('data-mobile-wp'));
                             }
@@ -96,7 +97,7 @@
                             {
                                 $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-desktop'))
                             }
-                            if($('.item_<?=$item['id']?>').find('img').attr('data-desktop-wp').length > 0)
+                            if($('.item_<?=$item['id']?>').find('img[data-desktop-wp]').length > 0)
                             {
                                 $('.item_<?=$item['id']?>').find('source').attr('srcset',$('.item_<?=$item['id']?>').find('img').attr('data-desktop-wp'));
                             }

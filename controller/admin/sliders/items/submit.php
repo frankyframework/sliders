@@ -15,11 +15,13 @@ $id_slider       = $Tokenizer->decode($MyRequest->getRequest('id_slider'));
 $callback = $Tokenizer->decode($MyRequest->getRequest('callback'));
 $code       = $MyRequest->getRequest('code','',true);
 $boton_link       = $MyRequest->getRequest('boton_link',0);
+$orden       = $MyRequest->getRequest('orden',0);
 
 $SlidersitemsEntity->id($id);
 $SlidersitemsEntity->id_slider($id_slider);
 $SlidersitemsEntity->code($code);
 $SlidersitemsEntity->boton_link($boton_link);
+$SlidersitemsEntity->orden((int)$orden);
 $error = false;
 
 $validaciones =  new validaciones();
@@ -222,7 +224,7 @@ if($error == false)
              $MyFlashMessage->setMsg("success",$MyMessageAlert->Message("editar_generico_success"));
         }
 
-        $location = (!empty($callback) ? ($callback) : $MyRequest->url(ADMIN_SLIDERS_ITEMS).'?id='.$Tokenizer->token("sliders",$SlidersitemsEntity->id_slider()));
+        $location = (!empty($callback) ? ($callback) : $MyRequest->url(ADMIN_SLIDERS_ITEMS).'?id_slider='.$Tokenizer->token("sliders",$SlidersitemsEntity->id_slider()));
 
     }
     elseif($result == REGISTRO_ERROR)

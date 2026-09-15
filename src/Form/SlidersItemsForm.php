@@ -176,6 +176,21 @@ class SlidersItemsForm extends \Franky\Form\Form
             )
         );
 
+        $this->add(array(
+            'name' => 'orden',
+            'label' => _sliders('Posicion'),
+            'type'  => 'text',
+            'required'  => false,
+            'atributos' => array(
+                'class'       => '',
+                'maxlength' => 2
+             ),
+            'label_atributos' => array(
+                'class'       => 'desc_form_no_obligatorio'
+             )
+            )
+        );
+
          $this->add(array(
                 'name' => 'guardar',
                 'type'  => 'submit',
