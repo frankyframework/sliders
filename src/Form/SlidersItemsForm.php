@@ -143,6 +143,26 @@ class SlidersItemsForm extends \Franky\Form\Form
 
             )
         );
+
+        $this->add(array(
+            'name' => 'fetchpriority',
+            'label' => _sliders('Fetchpriority'),
+            'type'  => 'select',
+            'required'  => true,
+            'atributos' => array(
+                'class'       => 'required'
+             ),
+            'options' => array(
+                'high' => 'high',
+                'low' => 'low',
+                'auto' => 'auto'
+            ),
+            'label_atributos' => array(
+                'class'       => 'desc_form_obligatorio'
+             )
+            )
+        );
+
         $this->add(array(
                 'name' => 'fecha_inicio',
                 'label' => _sliders('Fecha de inicio'),

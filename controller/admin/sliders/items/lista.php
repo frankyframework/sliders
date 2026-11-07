@@ -25,7 +25,7 @@ if ($MyRequest->isAjax()) {
     
     $SlidersitemsModel = new SlidersitemsModel();
     $SlidersitemsEntity = new SlidersitemsEntity();
-    $SlidersitemsEntity->id_slider($Tokenizer->decode($id_slider));
+    $SlidersitemsEntity->id_slider($id_slider);
     $SlidersitemsModel->setPage($MyRequest->getRequest('page',1));
     $SlidersitemsModel->setTampag($MyRequest->getRequest('rows',100));
     $SlidersitemsModel->setOrdensql($sortInput." ".$MyRequest->getRequest('sord',"ASC"));

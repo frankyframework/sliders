@@ -14,6 +14,7 @@ class SlidersitemsEntity
     private $descripcion;
     private $url;
     private $orden;
+    private $fetchpriority;
     private $status;
     private $createdAt;
     private $updateAt;
@@ -41,6 +42,7 @@ class SlidersitemsEntity
         $this->titulo = (isset($data["titulo"]) ? $data["titulo"] : null);
         $this->descripcion = (isset($data["descripcion"]) ? $data["descripcion"] : null);
         $this->url = (isset($data["url"]) ? $data["url"] : null);
+        $this->fetchpriority = (isset($data["fetchpriority"]) ? $data["fetchpriority"] : null);
         $this->orden = (isset($data["orden"]) ? $data["orden"] : null);
         $this->status = (isset($data["status"]) ? $data["status"] : null);
         $this->createdAt = (isset($data["createdAt"]) ? $data["createdAt"] : null);
@@ -83,6 +85,8 @@ class SlidersitemsEntity
     public function descripcion($descripcion = null){ if($descripcion !== null){ $this->descripcion=$descripcion; }else{ return $this->descripcion; } }
 
     public function url($url = null){ if($url !== null){ $this->url=$url; }else{ return $this->url; } }
+
+    public function fetchpriority($fetchpriority = null){ if($fetchpriority !== null){ $this->fetchpriority=$fetchpriority; }else{ return $this->fetchpriority; } }
 
     public function orden($orden = null){ if($orden !== null){ $this->orden=$orden; }else{ return $this->orden; } }
 

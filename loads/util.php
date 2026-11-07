@@ -12,6 +12,7 @@ function getSlider($code)
     global $MyFrankyMonster;
     global $MyMetatag;
     global $MyRequest;
+    global $Mobile_detect;
 
     $plugins = $MyFrankyMonster->MyJQueyfile();
     
@@ -55,7 +56,7 @@ function getSlider($code)
                 $slider['items'][] = $registro;
             }  
             
-            return render(PROJECT_DIR.'/modulos/sliders/diseno/slider.phtml',['slider' => $slider,'MyRequest' => $MyRequest,'MyConfigure' => $MyConfigure]);
+            return render(PROJECT_DIR.'/modulos/sliders/diseno/slider.phtml',['slider' => $slider,'MyRequest' => $MyRequest,'MyConfigure' => $MyConfigure, 'Mobile_detect' => $Mobile_detect]);
         }
       
         

@@ -69,9 +69,19 @@
                 <?php endif; ?>
                 <?php
                 if(getCoreConfig("base/pwa/images-next-generation") == 1 && isset($item['imagen_wp']) && isset($item['imagen_responsive_wp'] )) {
-                    echo makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."' data-mobile-wp='".$item['imagen_responsive_wp']."' data-desktop-wp='".$item['imagen_wp']."'"); 
+                    if($Mobile_detect->isMobile()) {
+                        $initImage = $item['imagen_responsive'];
+                    } else {
+                        $initImage = $item['imagen'];
+                    }
+                    echo makeHTMLImg($initImage,"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."' data-mobile-wp='".$item['imagen_responsive_wp']."' data-desktop-wp='".$item['imagen_wp']."' fetchpriority='".$item['fetchpriority']."'"); 
                 } else {
-                    echo makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."'"); 
+                    if($Mobile_detect->isMobile()) {
+                        $initImage = $item['imagen_responsive'];
+                    } else {
+                        $initImage = $item['imagen'];
+                    }
+                    echo makeHTMLImg($initImage,"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."' fetchpriority='".$item['fetchpriority']."'"); 
                 }
                 
                 
