@@ -67,7 +67,7 @@
                 <picture>
                     <source media="(max-width: 480px)" srcset="<?= $item['imagen_responsive'] ?>">
                     <source media="(min-width: 481px)" srcset="<?= $item['imagen'] ?>">
-                    <?=  makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"fetchpriority='".$item['fetchpriority']."'"); ?>
+                    <?=  makeHTMLImg($MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".$item["file"],"","",$item['titulo'],"fetchpriority='".$item['fetchpriority']."'",0,1); ?>
                 </picture>
                 <?php if(!empty($item['url'])): ?>
                     </a>
