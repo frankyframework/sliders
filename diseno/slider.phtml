@@ -33,12 +33,14 @@
                         {
                             $img = $MyRequest->link($item['imagen'],false,false);
                             $schemaImg = pathinfo($img);
-                            $imageResize = new \Franky\Core\ImageResize(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['basename']);
-                            
-                            $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
-                    
-                            if(file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
-                                $item['imagen'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                            if(!file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):  
+                                try { 
+                                    $imageResize = new \Franky\Core\ImageResize(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['basename']);
+                                    $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
+                                    $item['imagen'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                                } catch (\Exception) {
+
+                                }
                             endif;
                         }
                     }
@@ -50,12 +52,14 @@
                         {
                             $img = $MyRequest->link($item['imagen_responsive'],false,false);
                             $schemaImg = pathinfo($img);
-                            $imageResize = new \Franky\Core\ImageResize(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['basename']);
-                            
-                            $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
-                    
-                            if(file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
-                                $item['imagen_responsive'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                            if(!file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
+                                try {
+                                    $imageResize = new \Franky\Core\ImageResize(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['basename']);
+                                    $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
+                                    $item['imagen_responsive'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                                } catch(\Exception $e) {
+
+                                }
                             endif;
                         }
                     }
