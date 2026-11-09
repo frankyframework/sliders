@@ -4,9 +4,6 @@
     <ul class="slides">
         <?php if(!empty($slider['items'])): ?>
             <?php foreach($slider['items'] as $item): ?>
-
-
-
             <?php
             if(!empty($item['fecha_inicio']) && $item['fecha_inicio'] !='0000-00-00')
             {
@@ -22,7 +19,6 @@
                     continue;
                 }
             } 
-            
             ?>
                 <li class="item_<?=$item['id']?>" >
                 <?php if($item['tipo'] == 'imagen'): ?>
@@ -32,7 +28,7 @@
                     if(!empty($item["file"]) && file_exists($MyConfigure->getServerUploadDir()."/sliders/".$item['id_slider']."/".$item["file"]))
                     {
                         $item['imagen'] = $MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".$item["file"];
-
+                        $item['imagen_responsive'] = $item['imagen'];
                         if(getCoreConfig("base/pwa/images-next-generation") == 1)
                         {
                             $img = $MyRequest->link($item['imagen'],false,false);
@@ -42,7 +38,7 @@
                             $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
                     
                             if(file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
-                                $item['imagen_wp'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                                $item['imagen'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
                             endif;
                         }
                     }
@@ -59,7 +55,7 @@
                             $imageResize->webpImage(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp');
                     
                             if(file_exists(PROJECT_DIR.'/'.$schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp')):
-                                $item['imagen_responsive_wp'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
+                                $item['imagen_responsive'] = $schemaImg['dirname'].'/'.$schemaImg['filename'].'.webp';
                             endif;
                         }
                     }
@@ -67,53 +63,16 @@
                 <?php if(!empty($item['url'])): ?>
                     <a href="<?=$item['url']?>" target="blank" class="">
                 <?php endif; ?>
-                <?php
-                if(getCoreConfig("base/pwa/images-next-generation") == 1 && isset($item['imagen_wp']) && isset($item['imagen_responsive_wp'] )) {
-                    if($Mobile_detect->isMobile()) {
-                        $initImage = $item['imagen_responsive'];
-                    } else {
-                        $initImage = $item['imagen'];
-                    }
-                    echo makeHTMLImg($initImage,"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."' data-mobile-wp='".$item['imagen_responsive_wp']."' data-desktop-wp='".$item['imagen_wp']."' fetchpriority='".$item['fetchpriority']."'"); 
-                } else {
-                    if($Mobile_detect->isMobile()) {
-                        $initImage = $item['imagen_responsive'];
-                    } else {
-                        $initImage = $item['imagen'];
-                    }
-                    echo makeHTMLImg($initImage,"","",$item['titulo'],"data-mobile='".$item['imagen_responsive']."' data-desktop='".$item['imagen']."' fetchpriority='".$item['fetchpriority']."'"); 
-                }
-                
-                
-                ?>
+             
+                <picture>
+                    <source media="(max-width: 480px)" srcset="<?= $item['imagen_responsive'] ?>">
+                    <source media="(min-width: 481px)" srcset="<?= $item['imagen'] ?>">
+                    <?=  makeHTMLImg($item['imagen_responsive'],"","",$item['titulo'],"fetchpriority='".$item['fetchpriority']."'"); ?>
+                </picture>
                 <?php if(!empty($item['url'])): ?>
                     </a>
                 <?php endif; ?>    
-                    <script>
-                    $(window).on('load resize', function(){
-                        if($(this).width() < 768)
-                        {
-                            if($('.item_<?=$item['id']?>').find('img').attr('data-mobile').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-mobile'));
-                            }
-                            if($('.item_<?=$item['id']?>').find('img[data-mobile-wp]').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('source').attr('srcset',$('.item_<?=$item['id']?>').find('img').attr('data-mobile-wp'));
-                            }
-                        }
-                        else{
-                            if($('.item_<?=$item['id']?>').find('img').attr('data-desktop').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('img').attr('data-desktop'))
-                            }
-                            if($('.item_<?=$item['id']?>').find('img[data-desktop-wp]').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('source').attr('srcset',$('.item_<?=$item['id']?>').find('img').attr('data-desktop-wp'));
-                            }
-                        }
-                    });
-                    </script>
+              
                 <?php endif; ?>
                 <?php if($item['tipo'] == 'video'): ?>
                     <?php
