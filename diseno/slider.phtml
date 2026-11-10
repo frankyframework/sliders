@@ -166,6 +166,15 @@
             controlNav: <?=($slider['controlnav'] == 1 ? 'true' : 'false')?>,
             animationLoop: <?=($slider['infinito'] == 1 ? 'true' : 'false')?>,
             slideshow: <?=($slider['auto'] == 1 ? 'true' : 'false')?>,
+            start: function(slider) {
+                // Al cargar el slider, obligamos a Safari a actualizar el árbol responsivo
+                if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+                $('.flexslider .slides picture img').each(function() {
+                    var currentSrc = $(this).attr('src');
+                    $(this).attr('src', currentSrc); // Fuerza el redibujado en iOS
+                });
+                }
+            }
         });
     });
 </script>
