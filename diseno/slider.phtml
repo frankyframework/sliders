@@ -73,9 +73,9 @@
                 <?php endif; ?>
              
                 <picture>
-                    <source media="(max-width: 480px)" srcset="<?= $item['imagen_responsive'] ?>" <?= (strtolower(substr($item['imagen_responsive'],-4)) == "webp" ? 'type="image/webp"':"" )?>>
-                    <source media="(min-width: 481px)" srcset="<?= $item['imagen'] ?>" <?= (strtolower(substr($item['imagen_responsive'],-4)) == "webp" ? 'type="image/webp"':"" )?>>
-                    <?=  makeHTMLImg($MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".$item["file"],"","",$item['titulo'],"fetchpriority='".$item['fetchpriority']."'",0,1); ?>
+                    <source media="(max-width: 480px)" srcset="<?= $item['imagen_responsive'] ?>" >
+                    <source media="(min-width: 481px)" srcset="<?= $item['imagen'] ?>" >
+                    <?=  makeHTMLImg($MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".(!empty($item["file_responsive"]) ? $item["file_responsive"] : $item["file"]),"","",$item['titulo'],"fetchpriority='".$item['fetchpriority']."'",0,1); ?>
                 </picture>
                 <?php if(!empty($item['url'])): ?>
                     </a>
@@ -165,16 +165,7 @@
         $('.<?=$slider['code']?>').flexslider({
             controlNav: <?=($slider['controlnav'] == 1 ? 'true' : 'false')?>,
             animationLoop: <?=($slider['infinito'] == 1 ? 'true' : 'false')?>,
-            slideshow: <?=($slider['auto'] == 1 ? 'true' : 'false')?>,
-            start: function(slider) {
-                // Al cargar el slider, obligamos a Safari a actualizar el árbol responsivo
-                if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-                $('.flexslider .slides picture img').each(function() {
-                    var currentSrc = $(this).attr('src');
-                    $(this).attr('src', currentSrc); // Fuerza el redibujado en iOS
-                });
-                }
-            }
+            slideshow: <?=($slider['auto'] == 1 ? 'true' : 'false')?>
         });
     });
 </script>
