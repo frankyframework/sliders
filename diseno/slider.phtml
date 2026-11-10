@@ -73,8 +73,8 @@
                 <?php endif; ?>
              
                 <picture>
-                    <source media="(max-width: 480px)" data-type="mobile" srcset="<?= $item['imagen_responsive'] ?>" >
-                    <source media="(min-width: 481px)" data-type="desktop"  srcset="<?= $item['imagen'] ?>" >
+                    <source media="(max-width: 768px)" data-type="mobile" srcset="<?= $item['imagen_responsive'] ?>" >
+                    <source media="(min-width: 769px)" data-type="desktop"  srcset="<?= $item['imagen'] ?>" >
                     <?=  makeHTMLImg($MyConfigure->getUploadDir()."/sliders/".$item["id_slider"]."/".$item["file"],"","",$item['titulo'],"fetchpriority='".$item['fetchpriority']."'",0,1); ?>
                 </picture>
                 <?php if(!empty($item['url'])): ?>
@@ -82,7 +82,7 @@
                 <?php endif; ?>    
                     <script>
                     $(window).on('load resize',function(){
-                        if($(this).width() <= 480)
+                        if($(this).width() <= 768)
                         {
                             if($('.item_<?=$item['id']?>').find('[data-type=mobile]').length > 0)
                             {
