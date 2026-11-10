@@ -84,15 +84,15 @@
                     $(window).on('load resize',function(){
                         if($(this).width() <= 480)
                         {
-                            if($('.item_<?=$item['id']?>').find('[media="(max-width: 480px)]"').length > 0)
+                            if($('.item_<?=$item['id']?>').find('[media=(max-width: 480px)]').length > 0)
                             {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('[media="(max-width: 480px)]"').attr('srcset'));
+                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('[media=(max-width: 480px)]').attr('srcset'));
                             }
                         }
                         else{
-                            if($('.item_<?=$item['id']?>').find('[media="(mmin-width: 481px)]"').length > 0)
+                            if($('.item_<?=$item['id']?>').find('[media="(mmin-width: 481px)').length > 0)
                             {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('[media="(min-width: 481px)]"').attr('srcset'));
+                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('[media=(min-width: 481px)]').attr('srcset'));
                             }
                         }
                     });
