@@ -80,23 +80,7 @@
                 <?php if(!empty($item['url'])): ?>
                     </a>
                 <?php endif; ?>    
-                    <script>
-                    $(window).on('load resize',function(){
-                        if($(this).width() <= 768)
-                        {
-                            if($('.item_<?=$item['id']?>').find('[data-type=mobile]').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('[data-type=mobile]').attr('srcset'));
-                            }
-                        }
-                        else{
-                            if($('.item_<?=$item['id']?>').find('[data-type=desktop]').length > 0)
-                            {
-                                $('.item_<?=$item['id']?>').find('img').attr('src',$('.item_<?=$item['id']?>').find('[data-type=desktop]').attr('srcset'));
-                            }
-                        }
-                    });
-                    </script>
+
                 <?php endif; ?>
                 <?php if($item['tipo'] == 'video'): ?>
                     <?php
